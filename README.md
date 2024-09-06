@@ -12,6 +12,8 @@ This project aims to integrate Security Orchestration, Automation, and Response 
 ### LimaCharlie
 LimaCharlie is the EDR tool which is used for detecting incidents based on custom rules intended to detect potential threats or suspicious activity at endpoint. LimaCharlie provides the necessary visibility into any endpoint connected to it, providing alerts once detection rules have been triggered. 
 
+### Tines
+Tines acts as the the automation and orchestration layer in this project. When a detection rule is triggered and an alert is created, it is forwarded to Tines. Tines then manages the response workflow, sending notifications to the appropriate communication channels (in this project it is email and or slack) and handling user interactions. 
 
-
-
+### Machines
+The machines monitored by LimaCharlie in this project are a Linux virtual machine (VMware) and a cloud Windows machine (Vultr). 
