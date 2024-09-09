@@ -186,8 +186,9 @@ Message:
 - Sensor ID (LimaCharlie)
 - Detection Link
 
+# User Prompt
 
-
+Next step in the playbook is to create a user prompt asking whether the user would like to isolate the machine. This prompt will be responsible for the automated response functionality.
 
 
 
