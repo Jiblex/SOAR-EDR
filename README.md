@@ -188,7 +188,7 @@ Message:
 
 # User Prompt
 
-Next step in the playbook is to create a user prompt asking whether the user would like to isolate the machine. This prompt will be responsible for the automated response functionality.
+Next step in the playbook is to create a user prompt asking whether the user would like to isolate the machine. This prompt will be responsible for the automated response functionality. As per the playbook, the prompt will ask the user whether they want to isolate the machine on which the detection occured. To do this I used the Page block.  
 
 
 
