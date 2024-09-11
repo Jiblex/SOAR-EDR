@@ -188,7 +188,90 @@ Message:
 
 # User Prompt
 
-Next step in the playbook is to create a user prompt asking whether the user would like to isolate the machine. This prompt will be responsible for the automated response functionality. As per the playbook, the prompt will ask the user whether they want to isolate the machine on which the detection occured. To do this I used the Page block.  
+Next step in the playbook is to create a user prompt asking whether the user would like to isolate the machine. This prompt will be responsible for the automated response functionality. As per the playbook, the prompt will ask the user whether they want to isolate the machine on which the detection occured. To do this I used the Page block. Tines makes it so that a new Page is generated for each Webhook event, which can be accessed via a dynamic URL. I included this dynamic URL as an extra field in the slack message named "Take Action", corresponding to the _PAGE.user_prompt_ variable. 
+
+<img width="1792" alt="Msg with info" src="https://github.com/user-attachments/assets/d67a96d9-f5e2-4755-a9a6-f28b31fca0ff">
+<br>
+<br>
+
+<img width="273" alt="Screenshot 2024-09-10 at 22 55 51" src="https://github.com/user-attachments/assets/b48e95ca-9844-434f-9c7b-20c1973b637c">
+<br>
+<br>
+
+I included the metadata on the Page again (same syntax as email) in case the user wants to re-review the info before making their decision to avoid extra clicks. Under the metadata I included a boolean in the form of a yes and no button, and made it required to have one or the other selected to submit the form. After clicking on one of the buttons, the user can now submit the form. 
+
+<img width="398" alt="Screenshot 2024-09-10 at 23 24 41" src="https://github.com/user-attachments/assets/d45c25e4-9042-4c96-bc61-3232feb37c19">
+<br>
+<br>
+
+I then tested this functionality by re-emitting an event, to make sure I can access the form from slack. 
+
+<img width="1175" alt="Screenshot 2024-09-10 at 23 31 24" src="https://github.com/user-attachments/assets/9203c138-dd65-4ed0-ab64-a2e64fc0ac1d">
+<br>
+<br>
+
+Clicking on the link:
+
+<img width="502" alt="Screenshot 2024-09-10 at 23 33 54" src="https://github.com/user-attachments/assets/2cc942ac-3dc0-4606-9267-57d7b6d23e56">
+<br>
+<br>
+
+No issues there, so I moved onto adding functionality to the yes and no buttons. To do this I used the Trigger block, which takes an action based on a trigger (in this case this "yes" or "no"), effectively acting as an if statement. Given that the user prompt has a boolean responsible for the buttons, the output of the form is either true or false making things simple:
+- If the output is false: send a slack message asking the user to investigate the incident.
+- If the output is true: send LimaCharlie a request to isolate the machine and then send a slack message confirming the isolation of the machine.
+
+<img width="865" alt="Screenshot 2024-09-10 at 23 51 49" src="https://github.com/user-attachments/assets/4c3fd964-144b-4adf-a17a-a047d0769e3c">
+<br>
+<br>
+
+To send the isolation request as well get the isolation status confirmation, I used the HTTP Requets blocks to send the requests to LimaCharlie. In order to be able to have the requests perform actions on LimaCharlie, I needed to make a new credential for LimaCharlie on Tines using my organization's API. The API token in this case lasts only an hour, this way I do not need to worry about it being misused from Tines while I am not working on the project. Tines makes it really easy to input a new token if the previous is no longer valid, which I liked a lot. Once implemented, I decided to run LaZagne.exe again, which triggered a Slack message and email, clicked the "Take Action" link, and selected "Yes" before submitting the form. 
+
+<img width="776" alt="Screenshot 2024-09-10 at 23 55 46" src="https://github.com/user-attachments/assets/c53801c7-61cf-4a04-ba2d-fb6458d17f41">
+<br>
+<br>
+
+Slack then sent me a confirmation message that the machine was isolated:
+<img width="1171" alt="Screenshot 2024-09-10 at 23 56 14" src="https://github.com/user-attachments/assets/8d43118c-4c0b-4bde-99d3-abf906440277">
+<br>
+<br>
+
+Going to LimaCharlie and clicking on the Windows machine in the "Sensors" tab clearly showed that the machine had been isolated:
+<img width="1789" alt="Screenshot 2024-09-10 at 23 57 11" src="https://github.com/user-attachments/assets/77c35a02-1066-4f24-b580-919f24426e32">
+<br>
+<br>
+
+To make sure this was the case, I opened the Windows machine console and pinged Google:
+
+<img width="416" alt="Screenshot 2024-09-11 at 00 08 48" src="https://github.com/user-attachments/assets/83339379-5967-48f1-8936-fc91a530adc8">
+<br>
+<br>
+
+This confirmed that LimaCharlie properly isolated the machine. Next I made Slack was sending a investigation notice if I clicked "No".
+
+<img width="1164" alt="Screenshot 2024-09-11 at 00 10 27" src="https://github.com/user-attachments/assets/2eb55541-76c0-478e-b1bb-834ea46868a4">
+<br>
+<br>
+
+## Wrap-Up and Future Additions
+
+At this point everything worked and I had completed all the functionality I set out to implement at the beginning of the project. My plan remains to add a Linux computer to this project, and potentially a Mac computer. In addition, I want to write more rules to address other scenarios. I may decide at any point to add more automation and response functionality through Tines, which I would document after this section. I will not be prioritizing documenting these things on here right away, but if anyone is feeling really curious you are free to reach out to me for an update if you don't see anything beyond this section. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
