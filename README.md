@@ -224,7 +224,7 @@ No issues there, so I moved onto adding functionality to the yes and no buttons.
 <br>
 <br>
 
-To send the isolation request as well get the isolation status confirmation, I used the HTTP Requets blocks to send the requests to LimaCharlie. In order to be able to have the requests perform actions on LimaCharlie, I needed to make a new credential for LimaCharlie on Tines using my organization's API. The API token in this case lasts only an hour, this way I do not need to worry about it being misused from Tines while I am not working on the project. Tines makes it really easy to input a new token if the previous is no longer valid, which I liked a lot. Once implemented, I decided to run LaZagne.exe again, which triggered a Slack message and email, clicked the "Take Action" link, and selected "Yes" before submitting the form. 
+To send the isolation request as well get the isolation status confirmation, I used the HTTP Request blocks to send the requests to LimaCharlie. In order to be able to have the requests perform actions on LimaCharlie, I needed to make a new credential for LimaCharlie on Tines using my organization's API. The API token in this case lasts only an hour, this way I do not need to worry about it being misused from Tines while I am not working on the project. Tines makes it really easy to input a new token if the previous is no longer valid, which I liked a lot. Once implemented, I decided to run LaZagne.exe again, which triggered a Slack message and email, clicked the "Take Action" link, and selected "Yes" before submitting the form. 
 
 <img width="776" alt="Screenshot 2024-09-10 at 23 55 46" src="https://github.com/user-attachments/assets/c53801c7-61cf-4a04-ba2d-fb6458d17f41">
 <br>
@@ -254,7 +254,7 @@ This confirmed that LimaCharlie properly isolated the machine. Next I made Slack
 
 ## Wrap-Up and Future Additions
 
-At this point everything worked and I had completed all the functionality I set out to implement at the beginning of the project. My plan remains to add a Linux computer to this project, and potentially a Mac computer. In addition, I want to write more rules to address other scenarios. I may decide at any point to add more automation and response functionality through Tines, which I would document after this section. I will not be prioritizing documenting these things on here right away, but if anyone is feeling really curious you are free to reach out to me for an update if you don't see anything beyond this section. 
+At this point everything worked and I had completed all the functionality I set out to implement at the beginning of the project. My plan remains to add a Linux computer to this project, and potentially a Mac computer. In addition, I want to write more rules to address other scenarios. I may decide at any point to add more automation and response functionality through Tines, which I would document after this section. I will not be prioritizing documenting these things on here right away, but if anyone is feeling really curious you are free to reach out to me for an update if you don't see anything beyond this section. If anyone finds any typos or has any comments or advice, I would really appreciate it. 
 
 
 
